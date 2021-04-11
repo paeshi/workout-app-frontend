@@ -1,65 +1,216 @@
 import { useState, useEffect } from "react";
-import './App.css';
-import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import Form from './components/Form/Form'
-
-function App() {
-
- 
-
-  // const [state, setState] = useState({
-  //   user: null,
-  //   skills: [{ skill: "JavaScript", level: "4" }],
-  //   newSkill: {
-  //     skill: "",
-  //     level: "3",
-  //   },
-  // });
+import "./styles.css";
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Form from './components/Form/Form';
+import {auth} from './services/firebase'
 
 
 
-  return (
-    <div className="App">
-    <Header />
+export default function App() {
 
-    <hr/>
-    <Form 
-    day="Upper Body"
+  const [state, setState] = useState({
+    user: null,
+    workouts: [],
+    newWorkout: {
+      workout: "",
+      exercise: "",
+      reps1: "10", 
+      reps2: "10", 
+      reps3: "10", 
+      reps4: "10", 
+      reps5: "10", 
+      weight1: "",
+      weight2: "",
+      weight3: "",
+      weight4: "",
+      weight5: "",
+    },
+    editMode: false
+  });
 
-    />
+  async function getAppData() {
+    if(!state.user) return;
+    try {
+      const BASE_URL = `http://localhost:3001/api/workouts?uid=${state.user.uid}`;
+      const workouts = await fetch(BASE_URL).then(res => res.json());
+      setState((prevState) => ({
+        ...prevState,
+        workouts,
+      }));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getAppData();
+    auth.onAuthStateChanged(user=> {
+      if(user) {
+        setState(prevState => ({
+          ...prevState,
+          user,
+      }));
+    } else {
+      setState(prevState => ({
+        ...prevState,
+        workouts: [],
+        user,
+    }));
+  }
+});
+  }, [state.user]);
 
 
-    {/* <form action="">
-      <label htmlFor="">
-        <span>Exercise</span>
-        <input type="text" name="workout" value={state.newWorkout.workout}/>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </label>
+  async function handleSubmit(e) {
+    // this statement exits for safety:
+    if(!state.user) return;
+    e.preventDefault();
+    
+    const BASE_URL = 'http://localhost:3001/api/workouts';
+    
+    if (!state.editMode) {
+    const workouts = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'Application/json'
+      },
+      body: JSON.stringify({...state.newWorkout, uid: state.user.uid})
+    }).then(res => res.json());
 
+    setState((prevState) => ({
+      ...prevState,
+      workouts,
+      newWorkout: {
+        workout: "",
+        exercise: "",
+        reps1: "10", 
+        reps2: "10", 
+        reps3: "10", 
+        reps4: "10", 
+        reps5: "10", 
+        weight1: "25",
+        weight2: "25",
+        weight3: "25",
+        weight4: "25",
+        weight5: "25",
+      },
+    }));
+  } else {
+    const {workout, exercise, _id, reps1, reps2, reps3, reps4, reps5, weight1, weight2, weight3, weight4, weight5} = state.newWorkout;
+    const workouts = await fetch(`${BASE_URL}/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'Application/json'
+      },
+      body: JSON.stringify({workout, exercise, reps1, reps2, reps3, reps4, reps5, weight1, weight2, weight3, weight4, weight5})
+    }).then(res => res.json());
 
-    </form> */}
+    setState(prevState => ({
+      ...prevState,
+      workouts,
+      newWorkout: {
+        workout: "",
+        exercise: "",
+        reps1: "10", 
+        reps2: "10", 
+        reps3: "10", 
+        reps4: "10", 
+        reps5: "10", 
+        weight1: "25",
+        weight2: "25",
+        weight3: "25",
+        weight4: "25",
+        weight5: "25",
+      },
+      editMode: false
+    }));
 
-
-<Footer />
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-  );
+  }
 }
 
-export default App;
+
+  function handleChange(e) {
+    setState((prevState) => ({
+      ...prevState, 
+      newWorkout: {
+        ...prevState.newWorkout,
+        [e.target.name]: e.target.value 
+      }
+    })) 
+  }
+
+
+
+  async function handleDelete(workoutId) {
+    if (!state.user) return;
+    const URL = `http://localhost:3001/api/workouts/${workoutId}`;
+    const workouts = await fetch(URL, {
+      method: 'DELETE'
+    }).then(res => res.json());
+
+    setState(prevState => ({
+      ...prevState,
+      workouts,
+    }));
+  }
+
+
+  function handleEdit(workoutId) {
+    const {workout, exercise, _id, reps1, reps2, reps3, reps4, reps5, weight1, weight2, weight3, weight4, weight5} = state.workouts.find(workout => workout._id === workoutId)
+    setState(prevState => ({
+      ...prevState,
+      newWorkout: {
+       workout,
+        exercise,
+        _id,
+        reps1, reps2, reps3, reps4, reps5, weight1, weight2, weight3, weight4, weight5
+      },
+      editMode: true
+    }));
+  }
+
+
+  function handleCancel() {
+    setState(prevState => ({
+      ...prevState,
+      newWorkout: {
+        workout: "",
+        exercise: "",
+        reps1: "10", 
+        reps2: "10", 
+        reps3: "10", 
+        reps4: "10", 
+        reps5: "10", 
+        weight1: "25",
+        weight2: "25",
+        weight3: "25",
+        weight4: "25",
+        weight5: "25",
+      },
+      editMode: false
+    }))
+  }
+
+  return (
+    <>
+      <Header user={state.user}/>
+      <main>
+      <Form 
+      state={state} 
+      setState={setState}
+      useState={useState}
+      getAppData={getAppData}
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      handleDelete={handleDelete}
+      handleEdit={handleEdit}
+      handleCancel={handleCancel}
+       />
+
+       <Footer />
+       
+      </main>
+    </>
+  );
+}
