@@ -7,13 +7,12 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: black;
-
   margin: 0;
 }
 #root {
+  position: relative;
   flex-grow: 1;
-
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
 }
@@ -23,8 +22,11 @@ header {
   align-items: center;
   height: 30rem;
   padding-left: 1rem;
-  background-color: #020202;
-  box-shadow: 1px 1px 3px 3px #808080;
+  /* background-color: #020202; */
+  /* background-image: url("./images/headerphoto.jpg");
+  background-size: cover;
+  background-repeat: no-repeat; */
+
   color: white;
 }
 header > ul img {
@@ -45,19 +47,19 @@ header > ul li {
 }
 
 main {
-  flex-grow: 1;
   display: flex;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
 }
 
-section > article {
+article {
   display: flex;
   justify-content: space-between;
-  min-width: 15rem;
+  background-color: #d22020;
+  width: 30rem;
   color: white;
   margin: 0.1rem;
-  background-color: #070a67;
 }
 
 article > div {
@@ -66,26 +68,18 @@ article > div {
   align-items: center;
 }
 
-article > div:nth-child(1) {
-  flex-grow: 1;
-}
 article > div:nth-child(2) {
   width: 2rem;
-  background-color: #ffffff;
+  background-color: #21aabf;
 }
 
 article > div:nth-child(3) {
   width: 2rem;
-  background-color: #dbdcd4;
-}
-article > div:nth-child(4) {
-  width: 2rem;
-  background-color: #a3c8da;
+  background-color: #98a927;
 }
 
 article > div:nth-child(2):hover,
-article > div:nth-child(3):hover,
-article > div:nth-child(4):hover {
+article > div:nth-child(3):hover {
   cursor: pointer;
   box-shadow: 1px 1px 2px 2px #808080;
 }
@@ -95,25 +89,29 @@ label {
   align-items: center;
   margin-top: 0.5rem;
   color: white;
+  padding: 0.2em;
 }
 
-label span {
+/* label span {
   color: #ffffff;
-  width: 4.5rem;
-}
+  width: 14.5rem;
+} */
 
 input,
 select {
-  width: 100%;
+  width: 80%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.4rem;
   color: #6100fe;
   border: 2px solid #737495;
-  border-radius: 0;
-  outline: none;
+
   -webkit-appearance: none;
+}
+
+input[type="text"]:focus {
+  background-color: rgb(97, 195, 228);
 }
 
 button {
@@ -142,4 +140,20 @@ td {
 .headerTitle {
   font-size: 3rem;
   font-family: "Knewave", cursive;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 4rem;
+  background-color: yellow;
+  width: 100%;
+  text-align: center;
+  padding: 2em;
+}
+.mainDiv {
+  margin: 5em 5em 5em 5em;
+}
+.headerphoto {
+  width: 100%;
+  height: auto;
 }

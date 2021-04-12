@@ -2,7 +2,7 @@
 
 
 const Heading = () => {
-    const name= "Steve"
+    // const name= "Steve"
     const date = new Date();
     const currentTime = date.getHours();
     let greeting;
@@ -24,7 +24,7 @@ const Heading = () => {
     }
     return (
         <div>
-        <h1> <span className='heading' style={customStyle}>{greeting}, {name}</span></h1> 
+        <span className='heading' style={customStyle}>{greeting}</span>
         
         </div>
     )
