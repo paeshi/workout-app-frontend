@@ -14,94 +14,118 @@ const Form = ({
   handleEdit,
   handleCancel,
 }) => {
-  // const workoutsArray = [
-  //   {
-  //     name: "Bench Press",
-  //   },
-  //   {
-  //     name: "Push-Ups",
-  //   },
-  //   {
-  //     name: "Squat",
-  //   },
-  // ];
-  console.log(workoutsArray);
+  // const [input, setInput] = setState("")
+  function resetInput() {
+    console.log("clicked");
+  }
 
   return (
     <section>
-      {state.workouts.map((x, index) => (
-        <article key={index}>
-          <table>
-            <tbody>
+      <div className="form-container">
+        {state.workouts.map((x, index) => (
+          <article key={index}>
+            <table className="styled-table">
+              <thead>
+                <tr>
+                  <td>
+                    <h4>{x.workout}</h4>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="active-row">
+                  <td>{x.exercise}</td>
+                  <td>set 1</td>
+                  <td>set 2</td>
+                  <td>set 3</td>
+                  <td>set 4</td>
+                  <td>set 5</td>
+                </tr>
+
+                <tr>
+                  <td>Reps:</td>
+                  <td>{x.reps1} </td>
+                  <td>{x.reps2}</td>
+                  <td>{x.reps3}</td>
+                  <td>{x.reps4}</td>
+                  <td>{x.reps5}</td>
+                </tr>
+
+                <tr>
+                  <td>Weight:</td>
+                  <td>{x.weight1} </td>
+                  <td>{x.weight2}</td>
+                  <td>{x.weight3}</td>
+                  <td>{x.weight4}</td>
+                  <td>{x.weight5}</td>
+                </tr>
+              </tbody>
               <tr>
-                <td>
-                  <h2>{x.workout}</h2>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id="table-buttons">
+                  <div
+                    id="table-button-delete"
+                    onClick={() => handleDelete(x._id)}
+                  >
+                    {"🗑 Delete"}
+                  </div>
+                  {!state.editMode && (
+                    <div
+                      id="table-button-edit"
+                      onClick={() => handleEdit(x._id)}
+                    >
+                      {"✏️ Edit"}
+                    </div>
+                  )}
                 </td>
               </tr>
-
-              <tr>
-                <td>{x.exercise}</td>
-                <td>set 1</td>
-                <td>set 2</td>
-                <td>set 3</td>
-                <td>set 4</td>
-                <td>set 5</td>
-              </tr>
-
-              <tr>
-                <td>Reps:</td>
-                <td>{x.reps1} </td>
-                <td>{x.reps2}</td>
-                <td>{x.reps3}</td>
-                <td>{x.reps4}</td>
-                <td>{x.reps5}</td>
-              </tr>
-
-              <tr>
-                <td>Weight:</td>
-                <td>{x.weight1} </td>
-                <td>{x.weight2}</td>
-                <td>{x.weight3}</td>
-                <td>{x.weight4}</td>
-                <td>{x.weight5}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div onClick={() => handleDelete(x._id)}>{"🗑"}</div>
-          {!state.editMode && (
-            <div onClick={() => handleEdit(x._id)}>{"✏️"}</div>
-          )}
-        </article>
-      ))}
+            </table>
+          </article>
+        ))}
+      </div>
       {state.user && (
         <div className="mainDiv">
           <hr />
-          <label>
-            <span>Workout</span>
-
-            <input
-              name="workout"
-              value={state.newWorkout.workout}
-              onChange={handleChange}
-              list="daySelect"
-              type="text"
-            />
-            <datalist id="daySelect">
-              {workoutType.map((x) => (
-                <option value={x.type}>{x.type}</option>
-              ))}
-            </datalist>
-          </label>
 
           <form onSubmit={handleSubmit}>
-            <table>
-              <tbody>
+            <table className="table-form">
+              <thead>
                 <tr>
                   <td>
                     <label>
+                      {/* <span>Workout </span> */}
+
                       <input
-                        placeholder="choose or add workout"
+                        name="workout"
+                        value={state.newWorkout.workout}
+                        onChange={handleChange}
+                        list="daySelect"
+                        type="text"
+                        placeholder="Workout Type"
+                      />
+                      {/* <button onClick={resetInput}>x</button> */}
+
+                      <datalist id="daySelect">
+                        {workoutType.map((x) => (
+                          <option value={x.type}>{x.type}</option>
+                        ))}
+                      </datalist>
+                    </label>
+                  </td>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr className="active-row">
+                  <td>
+                    <label>
+                      <input
+                        // style={{ width: "50%" }}
+                        placeholder="Choose or add exercise"
                         list="workoutSelect"
                         name="exercise"
                         value={state.newWorkout.exercise}
@@ -135,6 +159,8 @@ const Form = ({
                       value={state.newWorkout.reps1}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -143,6 +169,8 @@ const Form = ({
                       value={state.newWorkout.reps2}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -151,6 +179,8 @@ const Form = ({
                       value={state.newWorkout.reps3}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -159,6 +189,8 @@ const Form = ({
                       value={state.newWorkout.reps4}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -167,6 +199,8 @@ const Form = ({
                       value={state.newWorkout.reps5}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                 </tr>
@@ -183,6 +217,8 @@ const Form = ({
                       value={state.newWorkout.weight1}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -191,6 +227,8 @@ const Form = ({
                       value={state.newWorkout.weight2}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -199,6 +237,8 @@ const Form = ({
                       value={state.newWorkout.weight3}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -207,6 +247,8 @@ const Form = ({
                       value={state.newWorkout.weight4}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
                   </td>
                   <td>
@@ -215,12 +257,23 @@ const Form = ({
                       value={state.newWorkout.weight5}
                       onChange={handleChange}
                       type="text"
+                      maxLength="4"
+                      size="4"
                     />
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button>{state.editMode ? "Edit" : "Log It"}</button>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <button>{state.editMode ? "Edit" : "Log It"}</button>
           </form>
           {state.editMode && <button onClick={handleCancel}>Cancel</button>}
         </div>
