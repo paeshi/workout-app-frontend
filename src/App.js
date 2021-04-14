@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import "./styles.css";
+// import "./styles.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Form from "./components/Form/Form";
+import Banner from "./components/Banner/Banner";
 import { auth } from "./services/firebase";
 
 export default function App() {
@@ -234,6 +235,7 @@ export default function App() {
   return (
     <>
       <Header user={state.user} />
+      <Banner />
 
       {/* <main> */}
       <Form

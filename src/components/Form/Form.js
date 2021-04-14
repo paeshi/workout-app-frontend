@@ -1,5 +1,5 @@
 // import { useState, useEffect } from "react";
-import "../../styles.css";
+// import "../../styles.css";
 import workoutsArray, { workoutType } from "../../variables/workoutVariables";
 // import {auth} from '../../services/firebase'
 
@@ -27,14 +27,14 @@ const Form = ({
             <table className="styled-table">
               <thead>
                 <tr>
-                  <td>
+                  <td colSpan="6" valign="top">
                     <h4>{x.workout}</h4>
                   </td>
                 </tr>
               </thead>
               <tbody>
                 <tr className="active-row">
-                  <td>{x.exercise}</td>
+                  <td valign="top">{x.exercise}</td>
                   <td>set 1</td>
                   <td>set 2</td>
                   <td>set 3</td>
@@ -59,30 +59,31 @@ const Form = ({
                   <td>{x.weight4}</td>
                   <td>{x.weight5}</td>
                 </tr>
-              </tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="table-buttons">
-                  <div
-                    id="table-button-delete"
-                    onClick={() => handleDelete(x._id)}
-                  >
-                    {"🗑 Delete"}
-                  </div>
-                  {!state.editMode && (
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td id="table-buttons">
                     <div
-                      id="table-button-edit"
-                      onClick={() => handleEdit(x._id)}
+                      id="table-button-delete"
+                      onClick={() => handleDelete(x._id)}
                     >
-                      {"✏️ Edit"}
+                      {"🗑 Delete"}
                     </div>
-                  )}
-                </td>
-              </tr>
+                    {!state.editMode && (
+                      <div
+                        id="table-button-edit"
+                        onClick={() => handleEdit(x._id)}
+                      >
+                        {"✏️ Edit"}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </article>
         ))}
@@ -95,7 +96,7 @@ const Form = ({
             <table className="table-form">
               <thead>
                 <tr>
-                  <td>
+                  <td colSpan="6">
                     <label>
                       {/* <span>Workout </span> */}
 
@@ -125,7 +126,7 @@ const Form = ({
                     <label>
                       <input
                         // style={{ width: "50%" }}
-                        placeholder="Choose or add exercise"
+                        placeholder="Exercise"
                         list="workoutSelect"
                         name="exercise"
                         value={state.newWorkout.exercise}
@@ -270,12 +271,14 @@ const Form = ({
                   <td></td>
                   <td>
                     <button>{state.editMode ? "Edit" : "Log It"}</button>
+                    {state.editMode && (
+                      <button onClick={handleCancel}>Cancel</button>
+                    )}
                   </td>
                 </tr>
               </tbody>
             </table>
           </form>
-          {state.editMode && <button onClick={handleCancel}>Cancel</button>}
         </div>
       )}
     </section>
