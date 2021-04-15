@@ -1,6 +1,6 @@
 import { login, logout } from "../../services/firebase";
-import { Link, Route, Switch } from "react-router-dom";
-// import Heading from "../Heading/Heading";
+import { Link } from "react-router-dom";
+import Carousel from "../../components/Carousel/Carousel";
 
 const LandingPage = (props) => {
   const date = new Date();
@@ -24,19 +24,30 @@ const LandingPage = (props) => {
   return (
     <>
       <div className="login-card">
-        <h1 style={{ color: "white", fontSize: "1em" }}>
+        <h1 style={{ color: "white", fontSize: "1.2em" }}>
           Fit tracker is a free open source app that allows you to track your
           workout data. Please login below to access the app.
         </h1>
 
         {props.user ? (
           <>
-            <h1 style={{ color: "white" }}>
-              <span className="main-nav-item heading" style={customStyle}>
-                {greeting},
-              </span>{" "}
+            <p style={{ color: "white" }}>
+              <span style={customStyle}>{greeting},</span>{" "}
               {props.user.displayName}
-            </h1>
+              <img
+                style={{
+                  height: "4rem",
+                  borderRadius: "50%",
+                  padding: "1px",
+                  border: "thin solid gold",
+                  marginLeft: "1em",
+                  marginTop: ".2em",
+                }}
+                src={props.user.photoURL}
+                alt={props.user.displayName}
+              />
+            </p>
+
             <Link to="/login">
               <button style={{ backgroundColor: "gold" }}>
                 Let's do this!
@@ -49,6 +60,8 @@ const LandingPage = (props) => {
           <button onClick={login}>Login</button>
         )}
       </div>
+
+      <Carousel />
     </>
   );
 };

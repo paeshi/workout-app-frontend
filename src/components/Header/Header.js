@@ -1,6 +1,5 @@
 import { login, logout } from "../../services/firebase";
-import { Link, Route, Switch } from "react-router-dom";
-import Heading from "../Heading/Heading";
+import { Link } from "react-router-dom";
 
 const Header = (props) => (
   <header className="main-header">
@@ -9,22 +8,22 @@ const Header = (props) => (
       <ul className="main-nav-items ">
         {props.user ? (
           <>
-            <li className="main-nav-item">{props.user.displayName}</li>
             <li className="main-nav-item">
-              <Link to="/settings">TO SETTINGS</Link>
+              <Link to="/">Home</Link>
             </li>
             <li className="main-nav-item">
-              <Link to="/">TO Home</Link>
+              <Link to="/about">About</Link>
             </li>
-            <li className="main-nav-item">
+            <li className="main-nav-item"></li>
+            {/* <li className="main-nav-item">
               <img src={props.user.photoURL} alt={props.user.displayName} />
-            </li>
-            <li className="auth-link main-nav-item" onClick={logout}>
+            </li> */}
+            <li className="auth-link main-nav-item log-button" onClick={logout}>
               Logout
             </li>
           </>
         ) : (
-          <li className="auth-link main-nav-item" onClick={login}>
+          <li className="auth-link main-nav-item log-button" onClick={login}>
             Login
           </li>
         )}

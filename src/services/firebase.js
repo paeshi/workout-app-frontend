@@ -1,19 +1,19 @@
 // import firebase core module
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 // import the auth package from firebase
-import 'firebase/auth';
+import "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyACEc0bQL_1JeCc_u2q71DnZiwA9GRzMLc",
-    authDomain: "react-dev-skills-e1389.firebaseapp.com",
-    projectId: "react-dev-skills-e1389",
-    storageBucket: "react-dev-skills-e1389.appspot.com",
-    messagingSenderId: "136534180108",
-    appId: "1:136534180108:web:417ab44314c448c54f0929"
-  };
+  apiKey: "AIzaSyAy4Lhkw_r2HgSqMVdoPzKXMfHmZ7tnKVw",
+  authDomain: "workout-app-7b8e9.firebaseapp.com",
+  projectId: "workout-app-7b8e9",
+  storageBucket: "workout-app-7b8e9.appspot.com",
+  messagingSenderId: "1003995142484",
+  appId: "1:1003995142484:web:8b3eef429daabcadbdd0c1",
+  measurementId: "G-KZQ8QCZ6XL",
+};
 
-
-// initialize the firebase app 
+// initialize the firebase app
 firebase.initializeApp(firebaseConfig);
 // set up a firebase provider(s)
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -21,14 +21,10 @@ const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
 // set up auth actions ie. login, logout
 function login() {
-auth.signInWithPopup(provider);
+  auth.signInWithPopup(provider);
 }
 function logout() {
-auth.signOut();
+  auth.signOut();
 }
 // export our actions
-export {
-    auth,
-    login,
-    logout
-}
+export { auth, login, logout };

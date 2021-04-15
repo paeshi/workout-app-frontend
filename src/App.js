@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import { auth } from "./services/firebase";
-import { Link, Route, Switch } from "react-router-dom";
-// import "./styles.css";
+import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import Form from "./components/Form/Form";
-import Banner from "./components/Banner/Banner";
-import Greeting from "./components/Greeting/Greeting";
 import Landing from "./components/Landing/Landing";
 import Carousel from "./components/Carousel/Carousel";
-import SettingsPage from "./pages/SettingsPage/SettingsPage";
+import AboutPage from "./pages/AboutPage/AboutPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 
 export default function App() {
@@ -29,6 +25,7 @@ export default function App() {
       weight3: "25",
       weight4: "25",
       weight5: "25",
+      notes: "",
     },
     editMode: false,
   });
@@ -97,6 +94,7 @@ export default function App() {
           weight3: "25",
           weight4: "25",
           weight5: "25",
+          notes: "",
         },
       }));
     } else {
@@ -114,6 +112,7 @@ export default function App() {
         weight3,
         weight4,
         weight5,
+        notes,
       } = state.newWorkout;
       const workouts = await fetch(`${BASE_URL}/${_id}`, {
         method: "PUT",
@@ -133,6 +132,7 @@ export default function App() {
           weight3,
           weight4,
           weight5,
+          notes,
         }),
       }).then((res) => res.json());
 
@@ -152,6 +152,7 @@ export default function App() {
           weight3: "25",
           weight4: "25",
           weight5: "25",
+          notes: "",
         },
         editMode: false,
       }));
@@ -242,21 +243,13 @@ export default function App() {
   return (
     <>
       <Header user={state.user} />
-      {/* <Greeting></Greeting> */}
       <Landing />
-      {/* <Carousel /> */}
       <Switch>
-        <Route exact path="/home">
+        <Route exact path="/">
           <LandingPage user={state.user} />
         </Route>
         <Route path="/carousel" render={(props) => <Carousel {...props} />} />
-        <Route
-          path="/settings"
-          render={(props) => <SettingsPage {...props} />}
-        />
-        {/* <Carousel /> */}
-        {/* <Link to="/form">Get it done</Link> */}
-        {/* <Link to="/settings">HERE's THE LINK</Link> */}
+        <Route path="/about" render={(props) => <AboutPage {...props} />} />
         <Route exact path="/login">
           <Form
             state={state}
@@ -271,8 +264,6 @@ export default function App() {
           />
         </Route>
       </Switch>
-
-      {/* <Footer /> */}
     </>
   );
 }

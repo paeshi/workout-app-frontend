@@ -65,11 +65,8 @@ const Form = ({
                 </tr>
 
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td colSpan="5">{x.notes}</td>
+
                   <td id="table-buttons">
                     <div
                       id="table-button-delete"
@@ -268,11 +265,17 @@ const Form = ({
                   </td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td colSpan="5">
+                    <textarea
+                      name="notes"
+                      value={state.newWorkout.notes}
+                      onChange={handleChange}
+                      rows="4"
+                      cols="50"
+                      placeholder="Notes"
+                    />
+                  </td>
+
                   <td>
                     <button>{state.editMode ? "Edit" : "Log It"}</button>
                     {state.editMode && (

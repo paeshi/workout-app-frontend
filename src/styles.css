@@ -4,7 +4,7 @@
   --red: #a51504;
   --yellow: #d7d758;
   --theme1: #ffffff;
-  --theme2: #ffffff;
+  --theme2: #31558c;
 }
 
 * {
@@ -17,22 +17,40 @@ body {
   background-color: black;
   margin: 0;
   color: white;
-  background: url("./images/Artboard5.svg");
+  background: url("./images/Artboard6.svg");
   background-attachment: fixed;
   background-size: cover;
 }
-h4 {
-  font-size: 1rem;
+
+a {
+  text-decoration: none;
 }
+
+/* *************** "Home" Landing Page Styles (Additional inline styles on LandingPage.js ***************** */
+
 .login-card {
   background-color: black;
-  border: thin solid red;
+  border: thin solid var(--theme2);
   border-radius: 10px;
-  padding: 2em;
-  margin: 3em 2em;
-  box-shadow: -10px 10px 5px black;
+  padding: 1em;
+  margin: 3em 0.5em;
+  box-shadow: 10px 10px 5px black;
   max-width: 500px;
 }
+/* ****************** "About" Page Styles ******************* */
+.about-div {
+  background-color: black;
+  border: thin solid var(--theme2);
+  border-radius: 10px;
+  padding: 2em;
+  box-shadow: 10px 10px 5px black;
+  max-width: 500px;
+  margin: 3em auto;
+}
+
+/* ****************** Header Styles ******************* */
+
+/* Logo */
 .brand-id {
   text-align: justify;
   font-size: 1.3rem;
@@ -41,6 +59,7 @@ h4 {
   width: 10em;
   vertical-align: baseline;
 }
+/* Nav Bar */
 .main-header {
   display: flex;
   position: fixed;
@@ -48,8 +67,6 @@ h4 {
   color: white;
   width: 100%;
   padding: 0.5em;
-  /* vertical-align: middle; */
-
   box-shadow: 10px 3px 4px rgb(62, 17, 17);
   z-index: 1;
 }
@@ -72,7 +89,8 @@ h4 {
 
 .main-nav-item {
   display: inline-block;
-  padding-right: 1em;
+  padding-right: 0.4em;
+  font-size: 1rem;
 }
 
 .main-nav-item > img {
@@ -95,6 +113,7 @@ h4 {
 }
 .footer {
   bottom: 0;
+
   height: 4rem;
   background-color: rgb(0, 0, 0);
   width: 100%;
@@ -125,45 +144,34 @@ input[type="text"]:focus {
   cursor: pointer;
   background-color: var(--red);
 }
+
+.log-button:hover {
+  cursor: pointer;
+}
 .rect {
   height: 100px;
 }
 
-@media (min-width: 650px) {
-  h1 {
-    display: inline-block;
-  }
-  body {
-    background-color: rgb(0, 0, 0);
-  }
-  header {
-    font-size: 1rem;
-    background-color: red;
-  }
-}
-
-/* .brand-id {
-  font-size: 2rem;
-  color: rgb(58, 204, 70);
-  width: 10em;
-} */
-
 .display-table {
   table-layout: fixed;
   width: 100%;
-  border: 5px solid var(--yellow);
+  border: 5px solid var(--theme2);
+
   padding: 0.5em;
   font-size: 0.7rem;
-  margin-bottom: 2em;
-  margin-right: 1.5em;
+  margin-bottom: 5em;
+  /* margin-right: 1.5em; */
   background-color: black;
+  box-shadow: 5px 5px 5px black;
 }
 
 .display-table td {
-  border: thin solid var(--red);
+  border: thin solid white;
   overflow: hidden;
   text-overflow: ellipsis;
-  word-wrap: break-word;
+  word-wrap: normal;
+  border-radius: 10%;
+  padding: 0.5em;
 }
 
 .table-form {
@@ -172,17 +180,80 @@ input[type="text"]:focus {
   border: 5px solid var(--theme1);
   padding: 0.5em;
   font-size: 0.7rem;
-  margin-bottom: 2em;
-  margin-right: 1.5em;
+  margin-bottom: 5em;
+  /* margin-right: 1.5em; */
   background-color: black;
+  box-shadow: 5px 5px 5px black;
 }
 
 .table-form td {
   border: thin solid var(--theme2);
   overflow: hidden;
   text-overflow: ellipsis;
-  word-wrap: break-word;
+  word-wrap: normal;
+  width: 100%;
+  padding: 0.5em;
 }
 input {
   font-size: 0.7rem;
+}
+
+@media only screen and (min-width: 650px) {
+  body {
+    /* background: url("./images/Artboard5.svg"); */
+  }
+
+  header {
+    font-size: 1rem;
+    background-color: var(--theme2);
+  }
+
+  .login-card {
+    margin: 3em auto;
+    max-width: 500px;
+  }
+
+  .display-table {
+    /* table-layout: fixed;
+    width: 100%;
+    border: 5px solid var(--theme2);
+    border-radius: 10%;
+    padding: 0.5em;
+    font-size: 0.5rem;
+    margin-bottom: 2em;
+    margin-right: 1.5em;
+    background-color: black; */
+  }
+
+  /* .display-table td {
+    border: thin solid var(--theme2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    border-radius: 10%;
+  }
+  
+  .table-form {
+    table-layout: fixed;
+    width: 100%;
+    border: 5px solid var(--theme1);
+    padding: 0.5em;
+    font-size: 0.7rem;
+    margin-bottom: 5em;
+    margin-right: 1.5em;
+  
+    background-color: var(--theme2);
+  }
+  
+  .table-form td {
+    border: thin solid white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    width: 100%;
+    padding: 0.5em;
+  } */
+  /* input {
+    font-size: 0.7rem;
+  } */
 }
