@@ -1,6 +1,6 @@
 import { login, logout } from "../../services/firebase";
 import { Link } from "react-router-dom";
-import Carousel from "../../components/Carousel/Carousel";
+// import Carousel from "../../components/Carousel/Carousel";
 
 const LandingPage = (props) => {
   const date = new Date();
@@ -61,7 +61,7 @@ const LandingPage = (props) => {
         )}
       </div>
 
-      <Carousel />
+      {/* <Carousel /> */}
     </>
   );
 };
