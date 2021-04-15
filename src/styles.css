@@ -3,6 +3,8 @@
 :root {
   --red: #a51504;
   --yellow: #d7d758;
+  --theme1: #ffffff;
+  --theme2: #ffffff;
 }
 
 * {
@@ -15,6 +17,21 @@ body {
   background-color: black;
   margin: 0;
   color: white;
+  background: url("./images/Artboard5.svg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+h4 {
+  font-size: 1rem;
+}
+.login-card {
+  background-color: black;
+  border: thin solid red;
+  border-radius: 10px;
+  padding: 2em;
+  margin: 3em 2em;
+  box-shadow: -10px 10px 5px black;
+  max-width: 500px;
 }
 .brand-id {
   text-align: justify;
@@ -26,14 +43,15 @@ body {
 }
 .main-header {
   display: flex;
-
-  background-color: var(--red);
+  position: fixed;
+  background-color: black;
+  color: white;
   width: 100%;
   padding: 0.5em;
   /* vertical-align: middle; */
 
   box-shadow: 10px 3px 4px rgb(62, 17, 17);
-  /* z-index: 10; */
+  z-index: 1;
 }
 
 .main-nav {
@@ -66,10 +84,14 @@ body {
 .banner-div {
   width: 100%;
   height: 40vh;
-  background: url("./images/headerphoto.jpg");
+  /* background: url("./images/headerphoto.jpg"); */
   /* margin-top: 5rem; */
   /* position: absolute;
   z-index: 0; */
+}
+
+.form-container {
+  margin: 0.5em;
 }
 .footer {
   bottom: 0;
@@ -79,6 +101,32 @@ body {
   text-align: center;
   padding: 2em;
   font-size: 0.8rem;
+  color: white;
+}
+form {
+  margin: 0.5em;
+}
+
+button:hover {
+  color: white;
+  background-color: var(--yellow);
+}
+
+input[type="text"]:focus {
+  background-color: var(--yellow);
+}
+
+#table-button-edit:hover {
+  cursor: pointer;
+  background-color: var(--yellow);
+}
+
+#table-button-delete:hover {
+  cursor: pointer;
+  background-color: var(--red);
+}
+.rect {
+  height: 100px;
 }
 
 @media (min-width: 650px) {
@@ -86,7 +134,7 @@ body {
     display: inline-block;
   }
   body {
-    background-color: green;
+    background-color: rgb(0, 0, 0);
   }
   header {
     font-size: 1rem;
@@ -100,17 +148,37 @@ body {
   width: 10em;
 } */
 
-table {
+.display-table {
   table-layout: fixed;
   width: 100%;
-  border: thin solid var(--red);
+  border: 5px solid var(--yellow);
   padding: 0.5em;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   margin-bottom: 2em;
+  margin-right: 1.5em;
+  background-color: black;
 }
 
-td {
+.display-table td {
   border: thin solid var(--red);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.table-form {
+  table-layout: fixed;
+  width: 100%;
+  border: 5px solid var(--theme1);
+  padding: 0.5em;
+  font-size: 0.7rem;
+  margin-bottom: 2em;
+  margin-right: 1.5em;
+  background-color: black;
+}
+
+.table-form td {
+  border: thin solid var(--theme2);
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;

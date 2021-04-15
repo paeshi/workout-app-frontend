@@ -1,6 +1,7 @@
 // import { useState, useEffect } from "react";
-// import "../../styles.css";
+import "../../styles.css";
 import workoutsArray, { workoutType } from "../../variables/workoutVariables";
+
 // import {auth} from '../../services/firebase'
 
 const Form = ({
@@ -14,22 +15,25 @@ const Form = ({
   handleEdit,
   handleCancel,
 }) => {
-  // const [input, setInput] = setState("")
-  function resetInput() {
-    console.log("clicked");
-  }
-
+  // function resetInput() {
+  //   console.log("clicked");
+  // }
+  // function handleDate() {
+  //   return x.createdAt.slice(0, 10) + " " + x.createdAt.slice(12, 15);
+  // }
   return (
     <section>
-      <div className="form-container">
+      <div className="form-container text-white">
         {state.workouts.map((x, index) => (
           <article key={index}>
-            <table className="styled-table">
+            <table className="display-table">
               <thead>
                 <tr>
-                  <td colSpan="6" valign="top">
-                    <h4>{x.workout}</h4>
+                  <td colSpan="5" valign="top">
+                    <p className="h6">{x.workout}</p>
                   </td>
+                  <td>{`Created on: ${x.createdAt.slice(0, 10)}`}</td>
+                  {/* <td>{handleDate}</td> */}
                 </tr>
               </thead>
               <tbody>
@@ -93,7 +97,7 @@ const Form = ({
           <hr />
 
           <form onSubmit={handleSubmit}>
-            <table className="table-form">
+            <table className="table-form text-white">
               <thead>
                 <tr>
                   <td colSpan="6">

@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
+import { auth } from "./services/firebase";
+import { Link, Route, Switch } from "react-router-dom";
 // import "./styles.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Form from "./components/Form/Form";
 import Banner from "./components/Banner/Banner";
-import { auth } from "./services/firebase";
+import Greeting from "./components/Greeting/Greeting";
+import Landing from "./components/Landing/Landing";
+import Carousel from "./components/Carousel/Carousel";
+import SettingsPage from "./pages/SettingsPage/SettingsPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 
 export default function App() {
   const [state, setState] = useState({
@@ -27,20 +33,21 @@ export default function App() {
     editMode: false,
   });
 
-  async function getAppData() {
-    if (!state.user) return;
-    try {
-      const BASE_URL = `http://localhost:3001/api/workouts?uid=${state.user.uid}`;
-      const workouts = await fetch(BASE_URL).then((res) => res.json());
-      setState((prevState) => ({
-        ...prevState,
-        workouts,
-      }));
-    } catch (error) {
-      console.log(error);
-    }
-  }
   useEffect(() => {
+    async function getAppData() {
+      if (!state.user) return;
+      try {
+        const BASE_URL = `http://localhost:3001/api/workouts?uid=${state.user.uid}`;
+        const workouts = await fetch(BASE_URL).then((res) => res.json());
+        setState((prevState) => ({
+          ...prevState,
+          workouts,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     getAppData();
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -235,23 +242,37 @@ export default function App() {
   return (
     <>
       <Header user={state.user} />
-      <Banner />
+      {/* <Greeting></Greeting> */}
+      <Landing />
+      {/* <Carousel /> */}
+      <Switch>
+        <Route exact path="/home">
+          <LandingPage user={state.user} />
+        </Route>
+        <Route path="/carousel" render={(props) => <Carousel {...props} />} />
+        <Route
+          path="/settings"
+          render={(props) => <SettingsPage {...props} />}
+        />
+        {/* <Carousel /> */}
+        {/* <Link to="/form">Get it done</Link> */}
+        {/* <Link to="/settings">HERE's THE LINK</Link> */}
+        <Route exact path="/login">
+          <Form
+            state={state}
+            setState={setState}
+            useState={useState}
+            // getAppData={getAppData}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+            handleCancel={handleCancel}
+          />
+        </Route>
+      </Switch>
 
-      {/* <main> */}
-      <Form
-        state={state}
-        setState={setState}
-        useState={useState}
-        getAppData={getAppData}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        handleDelete={handleDelete}
-        handleEdit={handleEdit}
-        handleCancel={handleCancel}
-      />
-      {/* </main> */}
-
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
