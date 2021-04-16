@@ -28,15 +28,6 @@ a {
 
 /* *************** "Home" Landing Page Styles (Additional inline styles on LandingPage.js ***************** */
 
-.login-card {
-  background-color: black;
-  border: thin solid var(--theme2);
-  border-radius: 10px;
-  padding: 1em;
-  margin: 3em 0.5em;
-  box-shadow: 10px 10px 5px black;
-  max-width: 500px;
-}
 /* ****************** "About" Page Styles ******************* */
 .about-div {
   background-color: black;
@@ -67,14 +58,14 @@ a {
   color: white;
   width: 100%;
   padding: 0.5em;
-  box-shadow: 10px 3px 4px rgb(62, 17, 17);
+  /* box-shadow: 10px 3px 4px rgb(62, 17, 17); */
   z-index: 1;
 }
 
 .main-nav {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: center;
   text-align: right;
   width: calc(100% - 3px);
   vertical-align: middle;
@@ -89,7 +80,7 @@ a {
 
 .main-nav-item {
   display: inline-block;
-  padding-right: 0.4em;
+  padding-right: 0.7em;
   font-size: 1rem;
 }
 
@@ -102,10 +93,25 @@ a {
 .banner-div {
   width: 100%;
   height: 40vh;
-  /* background: url("./images/headerphoto.jpg"); */
-  /* margin-top: 5rem; */
-  /* position: absolute;
-  z-index: 0; */
+}
+
+.landing-page-container {
+  display: flex;
+  flex-direction: column;
+}
+.login-card {
+  background-color: black;
+  /* border: thin solid var(--theme2); */
+  /* border-radius: 10px; */
+  padding: 4em;
+  /* margin: 3em 0.5em; */
+  /* box-shadow: 10px 10px 5px black; */
+  width: 100%;
+}
+.quote-container {
+  background-color: var(--yellow);
+  width: 100%;
+  padding: 4em;
 }
 
 .form-container {
@@ -149,7 +155,8 @@ input[type="text"]:focus {
   cursor: pointer;
 }
 .rect {
-  height: 100px;
+  height: 50px;
+  background-color: black;
 }
 
 .display-table {
@@ -200,60 +207,30 @@ input {
 
 @media only screen and (min-width: 650px) {
   body {
-    /* background: url("./images/Artboard5.svg"); */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
   header {
     font-size: 1rem;
     background-color: var(--theme2);
   }
-
-  .login-card {
-    margin: 3em auto;
-    max-width: 500px;
+  .form-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .landing-page-container {
+    display: flex;
+    flex-direction: row;
   }
 
   .display-table {
-    /* table-layout: fixed;
-    width: 100%;
-    border: 5px solid var(--theme2);
-    border-radius: 10%;
-    padding: 0.5em;
-    font-size: 0.5rem;
-    margin-bottom: 2em;
-    margin-right: 1.5em;
-    background-color: black; */
+    font-size: 1rem;
+    max-width: 650px;
   }
-
-  /* .display-table td {
-    border: thin solid var(--theme2);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    border-radius: 10%;
-  }
-  
   .table-form {
-    table-layout: fixed;
-    width: 100%;
-    border: 5px solid var(--theme1);
-    padding: 0.5em;
-    font-size: 0.7rem;
-    margin-bottom: 5em;
-    margin-right: 1.5em;
-  
-    background-color: var(--theme2);
+    font-size: 0.9rem;
+    max-width: 650px;
+    margin: 0 auto;
   }
-  
-  .table-form td {
-    border: thin solid white;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    width: 100%;
-    padding: 0.5em;
-  } */
-  /* input {
-    font-size: 0.7rem;
-  } */
 }

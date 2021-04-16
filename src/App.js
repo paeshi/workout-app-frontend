@@ -34,9 +34,9 @@ export default function App() {
     async function getAppData() {
       if (!state.user) return;
       try {
-        // const BASE_URL = `http://localhost:3001/api/workouts?uid=${state.user.uid}`;
-        const BASE_URL = `https://fit-journal-app.herokuapp.com/api/workouts?uid=${state.user.uid}`;
-        // https://fit-journal-app.herokuapp.com/
+        const BASE_URL = `http://localhost:3001/api/workouts?uid=${state.user.uid}`;
+        // const BASE_URL = `https://fit-journal-app.herokuapp.com/api/workouts?uid=${state.user.uid}`;
+        //
 
         const workouts = await fetch(BASE_URL).then((res) => res.json());
         setState((prevState) => ({
@@ -73,7 +73,8 @@ export default function App() {
     if (!state.user) return;
     e.preventDefault();
 
-    const BASE_URL = "https://fit-journal-app.herokuapp.com/api/workouts";
+    // const BASE_URL = "https://fit-journal-app.herokuapp.com/api/workouts";
+    const BASE_URL = "http://localhost:3001/api/workouts";
 
     if (!state.editMode) {
       const workouts = await fetch(BASE_URL, {
@@ -177,7 +178,9 @@ export default function App() {
 
   async function handleDelete(workoutId) {
     if (!state.user) return;
-    const URL = `https://fit-journal-app.herokuapp.com/api/workouts/${workoutId}`;
+    // const URL = `https://fit-journal-app.herokuapp.com/api/workouts/${workoutId}`;
+    const URL = `http://localhost:3001/api/workouts/${workoutId}`;
+
     const workouts = await fetch(URL, {
       method: "DELETE",
     }).then((res) => res.json());
@@ -256,12 +259,11 @@ export default function App() {
         </Route>
         <Route path="/carousel" render={(props) => <Carousel {...props} />} />
         <Route path="/about" render={(props) => <AboutPage {...props} />} />
-        <Route exact path="/login">
+        <Route exact path="/workout">
           <Form
             state={state}
             setState={setState}
             useState={useState}
-            // getAppData={getAppData}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
             handleDelete={handleDelete}

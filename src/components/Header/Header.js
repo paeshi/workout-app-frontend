@@ -1,9 +1,12 @@
 import { login, logout } from "../../services/firebase";
 import { Link } from "react-router-dom";
+// import { Carousel } from "bootstrap";
 
 const Header = (props) => (
   <header className="main-header">
-    <div className="brand-id">Fit Tracker</div>
+    <div className="brand-id">
+      <Link to="/">Fit Journal</Link>
+    </div>
     <nav className="main-nav">
       <ul className="main-nav-items ">
         {props.user ? (
@@ -13,6 +16,9 @@ const Header = (props) => (
             </li>
             <li className="main-nav-item">
               <Link to="/about">About</Link>
+            </li>
+            <li id="workout" className="main-nav-item">
+              <Link to="/workout">Let's Do This</Link>
             </li>
             <li className="main-nav-item"></li>
             {/* <li className="main-nav-item">
