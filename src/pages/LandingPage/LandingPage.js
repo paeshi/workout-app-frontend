@@ -50,7 +50,7 @@ const LandingPage = (props) => {
                 />
               </p>
 
-              <Link to="/login">
+              <Link to="/workout">
                 <button style={{ backgroundColor: "gold" }}>
                   Let's do this!
                 </button>
