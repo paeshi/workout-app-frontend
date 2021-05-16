@@ -65,13 +65,13 @@ const LandingPage = (props) => {
         <div className="quote-container">
           <p>
             "Forget failure. Forget Mistakes. Forget Everything, except what
-            you’re going to do now. And do it." – Lou Ferrigno, 2-time Mr
+            you’re going to do now. And do it." <br />– Lou Ferrigno, 2-time Mr
             Universe{" "}
           </p>
           <br />
           <p>
             "If you have discipline, drive, determination, nothing is
-            impossible."" – Dana Linn Bailey, First Ever Women’s Physique
+            impossible." <br />– Dana Linn Bailey, First Ever Women’s Physique
             Olympia Champion
           </p>
         </div>
