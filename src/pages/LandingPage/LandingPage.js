@@ -64,17 +64,11 @@ const LandingPage = (props) => {
         </div>
         <div className="quote-container">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-            eveniet placeat blanditiis reprehenderit laborum alias corrupti,
-            nihil ea ratione delectus molestias accusantium, incidunt voluptate.
-            Est quisquam autem aspernatur minus fugiat voluptates dolorem
-            laboriosam veniam, optio, consectetur similique vero quis dolorum
-            ratione et ullam alias? Unde ipsam iure quos perspiciatis, ducimus
-            exercitationem iste culpa voluptatibus, quidem, voluptatem ratione
-            ad minus. Fugit incidunt quos sint delectus ex quidem. Voluptate
-            autem pariatur expedita quia ipsum libero earum, excepturi facilis,
-            eaque natus laboriosam ipsa atque, aut vitae corrupti perspiciatis
-            dicta consectetur. Ex, ut quam?
+            "Forget failure. Forget Mistakes. Forget Everything, except what
+            you’re going to do now. And do it." – Lou Ferrigno, 2-time Mr
+            Universe "If you have discipline, drive, determination, nothing is
+            impossible."" – Dana Linn Bailey, First Ever Women’s Physique
+            Olympia Champion
           </p>
         </div>
       </div>
