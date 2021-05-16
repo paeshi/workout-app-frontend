@@ -66,7 +66,11 @@ const LandingPage = (props) => {
           <p>
             "Forget failure. Forget Mistakes. Forget Everything, except what
             you’re going to do now. And do it." – Lou Ferrigno, 2-time Mr
-            Universe "If you have discipline, drive, determination, nothing is
+            Universe{" "}
+          </p>
+          <br />
+          <p>
+            "If you have discipline, drive, determination, nothing is
             impossible."" – Dana Linn Bailey, First Ever Women’s Physique
             Olympia Champion
           </p>
