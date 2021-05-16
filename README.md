@@ -17,6 +17,7 @@ Transparenttextures.com
 Github
 Heroku
 Netlify
+Firebase
 
 ### `Getting Started`
 
